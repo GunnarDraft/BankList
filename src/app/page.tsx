@@ -8,6 +8,13 @@ const firaSans = Fira_Sans({
   subsets: ['latin'],
 })
 
+type Banco = {
+  description: string;
+  age: number;
+  url: string;
+  bankName: string;
+};
+
 async function getBankList() {
   const res = await fetch('https://dev.obtenmas.com/catom/api/challenge/banks')
   if (!res.ok) {
@@ -16,13 +23,6 @@ async function getBankList() {
   return res.json()
 }
 
-type Banco = {
-  description: string;
-  age: number;
-  url: string;
-  bankName: string;
-};
-
 export default async function Home() {
 
   const data = await getBankList()
@@ -30,19 +30,27 @@ export default async function Home() {
   return (
     <main className={firaSans.className}>
       <Suspense fallback={<div>No data</div>}>
+        <div className={styles.title}>
+          <div>&nbsp;</div>
+          <div>Name</div>
+          <div>Age</div>
+          <div>Description</div>
+        </div>
         {data.map((data: Banco, index: number) => (
           <div
             className={styles.listitem}
             key={index}>
-            <p><Image
-              src={data.url}
-              alt='name'
-              width={100}
-              height={100}
-              className={styles.image} /></p>
+            <div>
+              <Image
+                src={data.url}
+                alt='name'
+                width={64}
+                height={64}
+                className={styles.image} />
+            </div>
             <p>{data.bankName}</p>
             <p>{data.age}</p>
-            <p className={styles.description}>{data.description}</p>
+            <p>{data.description}</p>
           </div>))}
       </Suspense>
     </main>
