@@ -18,7 +18,7 @@ export default async function Home() {
   const data = await getData() 
   return (
     <main className={styles.main}>
-      {data.map((data: Banco) =><div>
+      {data.map((data: Banco) => <div key={data.bankName}>
         {data.bankName}
         {data.age}
         {data.url}
