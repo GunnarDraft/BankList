@@ -32,14 +32,14 @@ export default async function Home() {
       <Suspense fallback={<div>No data</div>}>
         <div className={styles.title}>
           <div>&nbsp;</div>
-          <div>Name</div>
-          <div>Age</div>
-          <div>Description</div>
+          <div>Nombre</div>
+          <div>Edad</div>
+          <div>Descripción</div>
         </div>
         {data.map((data: Banco, index: number) => (
           <div
             className={styles.listitem}
-            key={index}>
+            key={`${data.bankName}-${index}`}>
             <div>
               <Image
                 src={data.url}
