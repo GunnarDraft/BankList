@@ -2,26 +2,13 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { Fira_Sans } from 'next/font/google'
 import { Suspense } from "react";
+import getBankList from "@/api";
+import { Banco } from "@/types";
 
 const firaSans = Fira_Sans({
   weight: '500',
   subsets: ['latin'],
 })
-
-type Banco = {
-  description: string;
-  age: number;
-  url: string;
-  bankName: string;
-};
-
-async function getBankList() {
-  const res = await fetch('https://dev.obtenmas.com/catom/api/challenge/banks')
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-  return res.json()
-}
 
 export default async function Home() {
 
