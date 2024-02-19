@@ -29,7 +29,7 @@ export default async function Home() {
 
   return (
     <main className={firaSans.className}>
-      <Suspense fallback={<div>No data</div>}>
+      <Suspense fallback={<div>Sin Datos</div>}>
         <div className={styles.title}>
           <div>&nbsp;</div>
           <div>Nombre</div>
